@@ -37,7 +37,7 @@ class TaskController extends Controller
         $task->project_id = $project->id;
         $task->save();
 
-        return redirect()->route('project.home', ['project' => $project])->with('success', 'Task created successfully.');
+        return redirect()->route('project.home', ['project' => $project])->with('success', "Task ( {$task->title} )created successfully.");
     }
 
     /**
