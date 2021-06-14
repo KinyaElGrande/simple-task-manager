@@ -14,10 +14,10 @@
                         <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                     </svg>
                 </button>
-                <ul class="dropdown-menu absolute hidden text-white pt-2 ">
+                <ul class="dropdown-menu absolute hidden text-white pt-2 w-40 rounded-xl">
                     @foreach ($projects as $project)
                         <li>
-                            <a class="rounded-t bg-blue-500 hover:bg-blue-700 py-2 px-4 block whitespace-no-wrap"
+                            <a class="bg-blue-500 hover:bg-blue-700 py-2 px-4 block whitespace-no-wrap"
                                 href="{{ route('project.home', $project->id) }}">{{ $project->title }}</a>
                         </li>
                     @endforeach

@@ -16,9 +16,9 @@ class TaskController extends Controller
      */
     public function index(Project $project)
     {
-       $tasks = $project->tasks;
+        $tasks = $project->tasks;
 
-       return response()->json($tasks, 200);
+        return response()->json($tasks, 200);
     }
 
     /**
@@ -84,7 +84,14 @@ class TaskController extends Controller
         return redirect()->route('project.home', ['project' => $project])->with('success', "Task updated successfully");
     }
 
-    public function syncTasksPriority(Request $request,Project $project) {
+    /**
+     * Updates priority automatically
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Project  $project
+     */
+    public function syncTasksPriority(Request $request, Project $project)
+    {
         $this->validate($request, [
             'tasks.*.priority' => 'required|numeric',
         ]);

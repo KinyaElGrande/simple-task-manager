@@ -58,6 +58,7 @@ export default {
                     console.log(error);
                 });
         },
+        // prioritySync updates the priority automatically after drag and drop
         prioritySync() {
             this.tasks.map((task , index) => {
                 task.priority = index + 1
@@ -71,6 +72,7 @@ export default {
                 console.log(error);
             })
         },
+        // deleteTask deletes a task from the DB by passing id
         deleteTask(task) {
             axios.delete("/project/task/" +task.id+"/delete" )
                 .then(res => {
