@@ -8,6 +8,19 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+
+    /**
+     * Returns Project's Tasks in Json format
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Project $project)
+    {
+       $tasks = $project->tasks;
+
+       return response()->json($tasks, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -16,7 +29,7 @@ class TaskController extends Controller
      */
     public function create(Project $project)
     {
-        return view('tasks.create',['project' => $project]);
+        return view('tasks.create', ['project' => $project]);
     }
 
     /**
@@ -25,7 +38,7 @@ class TaskController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Project $project)
+    public function store(Request $request, Project $project)
     {
         $request->validate([
             'title' => 'required',
@@ -78,7 +91,7 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task, Project $project)
+    public function destroy(Project $project, Task $task)
     {
         $task->delete();
 

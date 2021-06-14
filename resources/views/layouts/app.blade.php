@@ -8,17 +8,17 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Task Management Application</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
     @include('partials.navbar')
-    <main>
+    <main id="app">
         @yield('content')
     </main>
 </body>
-
-<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
-
 </html>

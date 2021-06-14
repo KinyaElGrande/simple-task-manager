@@ -21,7 +21,10 @@ Route::get('/', '\App\Http\Controllers\ProjectController@create')->name('project
 Route::post('/', '\App\Http\Controllers\ProjectController@store');
 
 //tasks route
+Route::get('/project/{project}/tasks', '\App\Http\Controllers\TaskController@index');
 Route::get('/project/{project}/task-create', '\App\Http\Controllers\TaskController@create')->name('task.create');
 Route::post('/project/{project}/task-create', '\App\Http\Controllers\TaskController@store');
 Route::get('/project/{project}/task/{task}/edit', '\App\Http\Controllers\TaskController@edit')->name('task.edit');
 Route::put('/project/{project}/task/{task}/edit', '\App\Http\Controllers\TaskController@update')->name('task.update');
+Route::delete('/project/{project}/task/{task}/delete', '\App\Http\Controllers\TaskController@destroy')->name('task.destroy');
+

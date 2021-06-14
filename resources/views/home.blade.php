@@ -11,21 +11,26 @@
             <div class="py-4 px-2 border-b border-gray-300 bg-white">
                 <span class="block text-xl text-blue-600 font-medium pl-2">{{ $project->title }}</span>
             </div>
-            <ul class="flex flex-col divide-y divide-indigo-200 dropzone">
-                @foreach ($project->tasks as $task )
+            {{-- <ul class="flex flex-col divide-y divide-indigo-200"> --}}
+                <tasks-component :project="@json($project->id)"></tasks-component>
+                {{-- @foreach ($project->tasks as $task )
                 <li class="bg-white shadow-lg draggable cursor-move" draggable="true">
                    <div
                      class="flex flex-row justify-between items-center p-3 cursor-pointer"
                    >
                      <span class="text-gray-700">{{ $task->title }}</span>
-                    <span class="whitespace-nowrap text-sm font-medium">
+                    <span class="flex items-center text-sm font-medium">
                        <a href="{{ route('task.edit', ['project' => $project, 'task' => $task]) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
-                       <a href="{{ route('task.edit', ['project' => $project, 'task' => $task]) }}" class="text-white bg-red-500 hover:bg-red-700 p-1 rounded">Delete</a>
+                       <form action="{{ route('task.destroy', ['project' => $project, 'task' => $task])}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="text-white bg-red-500 hover:bg-red-700 p-1 rounded" type="submit">Delete</button>
+                       </form>
                     </span>
                    </div>
                  </li>
-               @endforeach
-            </ul>
+               @endforeach --}}
+            {{-- </ul> --}}
         </div>
         <a href="{{ route('task.create', ['project' => $project]) }}" class="flex items-center justify-center focus-within:bg-transparent hover:bg-blue-500
                 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded h-12">
