@@ -24,7 +24,6 @@
                         type="buttom"
                         @click="deleteTask(task)"
                     >
-                    {{ task.id }}
                         Delete
                     </button>
                 </span>
