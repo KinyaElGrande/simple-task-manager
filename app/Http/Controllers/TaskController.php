@@ -84,6 +84,26 @@ class TaskController extends Controller
         return redirect()->route('project.home', ['project' => $project])->with('success', "Task updated successfully");
     }
 
+    public function syncTasksPriority(Request $request,Project $project) {
+        $this->validate($request, [
+            'tasks.*.priority' => 'required|numeric',
+        ]);
+
+        $tasks = $project->tasks;
+
+        foreach ($tasks as $task) {
+            $id = $task->id;
+            foreach ($request->tasks as $tasksNew) {
+                if ($tasksNew['id'] == $id) {
+                    $task->update(['priority' => $tasksNew['priority']]);
+                }
+            }
+        }
+
+
+        return response('Synched Successfully.', 200);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

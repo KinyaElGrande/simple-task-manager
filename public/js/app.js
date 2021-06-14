@@ -1879,6 +1879,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['project'],
@@ -1899,6 +1900,18 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/project/" + this.project + "/tasks").then(function (response) {
         _this.tasks = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    prioritySync: function prioritySync() {
+      this.tasks.map(function (task, index) {
+        task.priority = index + 1;
+      });
+      axios.put("/project/" + this.project + "/task/syncPriority", {
+        tasks: this.tasks
+      }).then(function (response) {
+        console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -5950,7 +5963,8 @@ var render = function() {
         },
         end: function($event) {
           _vm.drag = false
-        }
+        },
+        change: _vm.prioritySync
       },
       model: {
         value: _vm.tasks,
@@ -5987,7 +6001,14 @@ var render = function() {
                     "a",
                     {
                       staticClass: "text-indigo-600 hover:text-indigo-900 mr-3",
-                      attrs: { href: "" }
+                      attrs: {
+                        href:
+                          "/project/ " +
+                          _vm.project +
+                          "/task/" +
+                          task.id +
+                          "/edit"
+                      }
                     },
                     [_vm._v("Edit")]
                   ),
