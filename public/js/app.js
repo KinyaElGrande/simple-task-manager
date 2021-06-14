@@ -1880,6 +1880,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['project'],
@@ -1914,6 +1916,13 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
+      });
+    },
+    deleteTask: function deleteTask(task) {
+      axios["delete"]("/project/task/" + task.id + "/delete").then(function (res) {
+        console.log(res.data);
+      })["catch"](function (err) {
+        console.log(err);
       });
     }
   }
@@ -6018,9 +6027,20 @@ var render = function() {
                     {
                       staticClass:
                         "text-white bg-red-500 hover:bg-red-700 p-1 rounded",
-                      attrs: { type: "submit" }
+                      attrs: { type: "buttom" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteTask(task)
+                        }
+                      }
                     },
-                    [_vm._v("\n                    Delete\n                ")]
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(task.id) +
+                          "\n                    Delete\n                "
+                      )
+                    ]
                   )
                 ]
               )

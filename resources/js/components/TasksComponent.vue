@@ -21,8 +21,10 @@
                     >
                     <button
                         class="text-white bg-red-500 hover:bg-red-700 p-1 rounded"
-                        type="submit"
+                        type="buttom"
+                        @click="deleteTask(task)"
                     >
+                    {{ task.id }}
                         Delete
                     </button>
                 </span>
@@ -61,13 +63,21 @@ export default {
             this.tasks.map((task , index) => {
                 task.priority = index + 1
             })
-            
+
             axios.put("/project/" + this.project + "/task/syncPriority", {tasks: this.tasks})
             .then((response) => {
                 console.log(response.data);
             })
             .catch((error) => {
                 console.log(error);
+            })
+        },
+        deleteTask(task) {
+            axios.delete("/project/task/" +task.id+"/delete" )
+                .then(res => {
+                console.log(res.data)
+                }).catch(err => {
+                console.log(err)
             })
         }
     }

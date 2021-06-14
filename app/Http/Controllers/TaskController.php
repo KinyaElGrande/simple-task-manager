@@ -107,14 +107,12 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Project  $project
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project, Task $task)
+    public function destroy($id)
     {
-        $task->delete();
-
-        return redirect()->route('project.home', ['project' => $project])->with('success', "Task deleted successfully");
+        Task::destroy($id);
+        return response()->json('Task deleted');
     }
 }
